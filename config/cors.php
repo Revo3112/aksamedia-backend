@@ -20,14 +20,28 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
+        // Local development
         'http://localhost:5173',
         'http://localhost:5174',
         'http://127.0.0.1:5173',
         'http://127.0.0.1:5174',
+
+        // Production (Railway, Vercel, Netlify, etc.)
         env('FRONTEND_URL', 'http://localhost:5173'),
+
+        // Tambahkan domain production Anda di sini
+        // 'https://your-frontend-domain.vercel.app',
+        // 'https://your-frontend-domain.netlify.app',
     ],
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [
+        // Pattern untuk subdomain Railway
+        '#^https://.*\.up\.railway\.app$#',
+        // Pattern untuk subdomain Vercel
+        '#^https://.*\.vercel\.app$#',
+        // Pattern untuk subdomain Netlify
+        '#^https://.*\.netlify\.app$#',
+    ],
 
     'allowed_headers' => ['*'],
 
